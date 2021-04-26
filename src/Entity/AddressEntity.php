@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-class EnderecoEntity {
+class AddressEntity
+{
     private int $id;
     private string $pais;
     private string $estado;
@@ -11,4 +12,5 @@ class EnderecoEntity {
     private string $rua;
     private string $numero;
     private string $complemento;
+    private string $cep;
 }
