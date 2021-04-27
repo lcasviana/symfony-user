@@ -30,4 +30,34 @@ class Phone
      * @ORM\Column(type="string", length=9)
      */
     private string $number;
+
+    public function __construct(
+        $userId,
+        $areaCode,
+        $number,
+    ) {
+        $this->userId = $userId;
+        $this->areaCode = $areaCode;
+        $this->number = $number;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    public function getAreaCode()
+    {
+        return $this->areaCode;
+    }
+
+    public function getNumber()
+    {
+        return $this->number;
+    }
 }

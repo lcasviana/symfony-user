@@ -60,4 +60,76 @@ class Address
      * @ORM\Column(type="string", length=8)
      */
     private string $cep;
+
+    public function __construct(
+        $userId,
+        $pais,
+        $estado,
+        $cidade,
+        $bairro,
+        $rua,
+        $numero,
+        $complemento,
+        $cep,
+    ) {
+        $this->userId = $userId;
+        $this->pais = $pais;
+        $this->estado = $estado;
+        $this->cidade = $cidade;
+        $this->bairro = $bairro;
+        $this->rua = $rua;
+        $this->numero = $numero;
+        $this->complemento = $complemento;
+        $this->cep = $cep;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    public function getCidade()
+    {
+        return $this->cidade;
+    }
+
+    public function getBairro()
+    {
+        return $this->bairro;
+    }
+
+    public function getRua()
+    {
+        return $this->rua;
+    }
+
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    public function getComplemento()
+    {
+        return $this->complemento;
+    }
+
+    public function getCep()
+    {
+        return $this->cep;
+    }
 }
