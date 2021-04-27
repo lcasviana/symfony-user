@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AddressRepository")
  */
-class AddressEntity
+class Address
 {
     /**
      * @ORM\Id()
