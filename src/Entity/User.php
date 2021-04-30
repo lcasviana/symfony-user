@@ -55,15 +55,17 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity="Address", cascade="persist")
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
+     * @ORM\JoinTable(
+     *     joinColumns={@ORM\JoinColumn(name="address_id", referencedColumnName="id")},
+     * )
      */
-    private $address; // UserAddress?
+    private Address $address;
 
     /**
      * @ORM\ManyToMany(targetEntity="Phone", cascade="persist")
      * @ORM\JoinTable(
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
+     *     inverseJoinColumns={@ORM\JoinColumn(name="phone_id", referencedColumnName="id", unique=true)}
      * )
      */
     private $phones; // ArrayCollection?
