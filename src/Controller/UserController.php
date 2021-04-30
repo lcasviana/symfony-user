@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -18,17 +19,23 @@ class UserController extends AbstractController
 
     public function __construct(
         private EntityManagerInterface $entityManager,
-        // private ValidatorInterface $validator,
+        private SerializerInterface $serializer,
+        private ValidatorInterface $validator,
     ) {
-        $repository = $entityManager->getRepository(User::class);
+        $this->repository = $entityManager->getRepository(User::class);
     }
 
     /**
      * @Route("/users/{id}", methods={"GET"})
      */
-    public function obtainUser($id): Response
+    public function obtainUser(int $id): Response
     {
+        $user = $this->repository->find($id);
+        if ($user == null)
+            return new JsonResponse(['error' => 'Not found'], Response::HTTP_BAD_REQUEST);
+
         return new JsonResponse(['status' => 'Ok'], Response::HTTP_OK);
+        // return JsonResponse::fromJsonString($this->serializer->serialize($user, 'json'));
     }
 
     /**
